@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h3>Lista de Produtos</h3>
+    <a asp-controller="produto" asp-action="add">Add Produto</a>
+    <table border="1" cellpadding="2" cellspacing="2">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Preco</th>
+            <th>Quantidade</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var produto in ViewBag.produtos) 
+        {
+            <tr>
+                <td>@produto.Id</td>
+                <td>@produto.Nome</td>
+                <td>@produto.Preco</td>
+                <td>@produto.Quantidade</td>
+                <td>@produto.Status</td>
+                <td>
+                    <a asp-controller="produto" asp-action="edite" asp-route-id="@produto.Id"
+                    onclick="return confirm('')"> Edite</a>
+                    <a asp-controller="produto" asp-action="delete" asp-route-id="@produto.Id"
+                    onclick="return confirm('Voce esta certo disso?')"> Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
